@@ -1,7 +1,7 @@
 ---
 title: "Project: Roman numeral converter"
-teaching: o
-exercises: 180
+teaching: 0
+exercises: 150
 questions:
 - "Write a Roman numeral converter"
 objectives:
