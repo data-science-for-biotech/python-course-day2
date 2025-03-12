@@ -15,6 +15,10 @@ keypoints:
 ---
 ## Follow standard Python style in your code.
 
+
+
+
+
 *   [PEP8](https://www.python.org/dev/peps/pep-0008):
     a style guide for Python that discusses topics such as how you should name variables,
     how you should use indentation in your code,
@@ -40,6 +44,14 @@ keypoints:
     no matter what language it's written in.
     Using Semantic Versioning makes it easy for other developers to understand
     what is guaranteed to stay the same and what might change across versions of your software.
+
+
+~~~python
+# Run the below - The Zen of Python
+import this
+~~~
+{: .python}
+
 
 ## Use docstrings to provide online help.
 
