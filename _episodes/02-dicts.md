@@ -31,6 +31,7 @@ keypoints:
 - **Values:** Use `dict.values()` to get all values in the dictionary.
 
 ~~~python
+# A simple example of a dictionary in biotechnology
 data = {'a': "Hello", 'b': 2, 'c': ["apple", "banana", "cherry"]}
 print(len(data))         # Output: 3
 print(data['a'])         # Output: Hello
@@ -80,7 +81,6 @@ Codon ATG codes for: Methionine
 > > ~~~python
 > > Updated codon dictionary: {'ATG': 'Start', 'TAA': 'Stop', 'TAG': 'Stop', 'TGA': 'Stop'}
 > > ~~~
-> > {: .language-python}
 {: .solution}
 
 > ## Fill in the Blanks
@@ -101,7 +101,6 @@ Codon ATG codes for: Methionine
 > > ~~~python
 > > amino_acid = codon_translation["GGT"]
 > > ~~~
-> > {: .language-python}
 {: .solution}
 
 > ## Adding a New Codon
@@ -121,5 +120,4 @@ Codon ATG codes for: Methionine
 > > ~~~python
 > > codon_dict["CCC"] = "Proline"
 > > ~~~
-> > {: .language-python}
 {: .solution}
