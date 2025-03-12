@@ -65,7 +65,7 @@ scientists tend to do the following:
     our first test should hold temperature, precipitation, and other factors constant.
 
 3.  *Compare to an oracle.*
-    A [test oracle]({{ site.github.url }}/reference/#test-oracle) is something whose results are trusted,
+    A is something whose results are trusted,
     such as experimental data, an older program, or a human expert.
     We use to test oracles to determine if our new program produces the correct results.
     If we have a test oracle,
@@ -254,12 +254,12 @@ not more.
 > with the code. What suggestions would you give the researcher for
 > ensuring any later changes they make work correctly?
 >
-> ~~~
+> ~~~python
 > patients = [[70, 1.8], [80, 1.9], [150, 1.7]]
->
+> 
 > def calculate_bmi(weight, height):
 >     return weight / (height ** 2)
->
+> 
 > for patient in patients:
 >     height, weight = patients[0]
 >     bmi = calculate_bmi(height, weight)
@@ -273,12 +273,40 @@ not more.
 > Patient's BMI is: 21.604938
 > ~~~
 > {: .output}
->
-> > ## Solution
-> > * The loop is not being utilised correctly. `height` and `weight` are always
-> >   set as the first patient's data during each iteration of the loop.
-> >
-> > * The height/weight variables are reversed in the function call to
-> >   `calculate_bmi(...)`
-> {: .solution}
-{: .challenge}
+
+<details>
+<summary>Solution</summary>
+
+* The loop is not being utilised correctly. `height` and `weight` are always set as the first patient's data during each iteration of the loop.
+
+* The height/weight variables are reversed in the function call to `calculate_bmi(...)`
+</details>
+
+---
+
+<details>
+<summary>Hidden Debugging Script (for students without a function to debug)</summary>
+
+```python
+def count_kmers(dna, k):
+    """
+    Count all k-mers (substrings of length k) in the given DNA string.
+
+    Parameters:
+        dna (str): The DNA sequence.
+        k (int): The length of each k-mer.
+
+    Returns:
+        dict: A dictionary mapping each k-mer to its count.
+    """
+    counts = {}
+    for i in range(len(dna) - k + 1):
+        kmer = dna[k:i+k]
+        counts[kmer] = counts.get(kmer, 0) + 1
+    return counts
+
+# Example usage
+dna_sequence = "ATCGATCGAATTCG"
+kmer_length = 3
+kmer_counts = count_kmers(dna_sequence, kmer_length)
+print(kmer_counts)
