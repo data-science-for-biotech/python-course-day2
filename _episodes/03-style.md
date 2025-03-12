@@ -21,14 +21,16 @@ keypoints:
   - How you should use indentation.
   - How to structure your `import` statements.
   <br>
-Adhering to PEP8 makes it easier for other Python frieds (and yourself) to read and understand your code. Tools like the [PEP8 library](https://pypi.python.org/pypi/pep8) or the "flake8" VS code, can help check your code for compliance.  
+Adhering to PEP8 makes it easier for other Python friends (and yourself) to read and understand your code. Tools like the [PEP8 library](https://pypi.python.org/pypi/pep8) or the "flake8" extension in VS Code can help check your code for compliance.  
 <br><br>
 ~~~python
 # Run the Zen of Python
 import this
 ~~~
 {: .python}
+
 <br>
+
 ## Use docstrings for functions
 
 * If the first statement in a function is a string literal (not assigned to a variable), it becomes the function's docstring.
@@ -44,6 +46,7 @@ def average(values):
 help(average)
 ~~~
 {: .python}
+
 ~~~
 Help on function average in module __main__:
 
@@ -83,7 +86,7 @@ def f(x,y):return x+y; print(f(1,2))
 ~~~python
 def add_numbers(a, b):
     """
-      Return the sum of a and b
+    Return the sum of a and b.
     """
     return a + b
 
@@ -110,7 +113,7 @@ print(process_data([1, 2, 3, 4]))
 {: .python}
 
 *Issues:*
-- missing comments and doc string
+- Missing comments and docstring.
 
 *With Clear Comments:*
 ~~~python
@@ -133,8 +136,6 @@ def process_data(data):
 print(process_data([1, 2, 3, 4]))
 ~~~
 {: .python}
-
-
 
 ## Exercises
 
@@ -181,7 +182,6 @@ print(process_data([1, 2, 3, 4]))
 
 > ## Messy code
 >
->
 > 1. Read the code and try to predict what it does.
 > 2. Run it: Does it produce the expected counts?
 > 3. Refactor the code to improve its readability and structure.
@@ -208,37 +208,38 @@ print(process_data([1, 2, 3, 4]))
 > print(kmers)
 > ~~~
 > {: .source}
-> ## Solution
->
-> ~~~python
-> def count_kmers(dna, k):
->     """
->     Count all k-mers (substrings of length k) in the given DNA string.
->
->     Parameters:
->         dna (str): The DNA sequence.
->         k (int): The length of each k-mer.
->
->     Returns:
->         dict: A dictionary mapping each k-mer to its count.
->     """
->     counts = {}
->     for i in range(len(dna) - k + 1):
->         kmer = dna[i:i+k]
->         counts[kmer] = counts.get(kmer, 0) + 1
->     return counts
->
-> # Example usage
-> dna_sequence = "ATCGATCGAATTCG"
-> kmer_length = 3
-> kmer_counts = count_kmers(dna_sequence, kmer_length)
-> print(kmer_counts)
-> ~~~
-> {: .source}
 
+<details>
+<summary>Solution</summary>
 
+~~~python
+def count_kmers(dna, k):
+    """
+    Count all k-mers (substrings of length k) in the given DNA string.
 
-> ## Finding Neighbors (- Extra execise if there is time)
+    Parameters:
+        dna (str): The DNA sequence.
+        k (int): The length of each k-mer.
+
+    Returns:
+        dict: A dictionary mapping each k-mer to its count.
+    """
+    counts = {}
+    for i in range(len(dna) - k + 1):
+        kmer = dna[i:i+k]
+        counts[kmer] = counts.get(kmer, 0) + 1
+    return counts
+
+# Example usage
+dna_sequence = "ATCGATCGAATTCG"
+kmer_length = 3
+kmer_counts = count_kmers(dna_sequence, kmer_length)
+print(kmer_counts)
+~~~
+</details>
+{: .source}
+
+> ## Finding Neighbors (- Extra exercise if there is time)
 >
 > This function is supposed to find if any neighbors of a specified location in an array are negative.
 > For what inputs does it produce the wrong answer? How can it be repaired?
