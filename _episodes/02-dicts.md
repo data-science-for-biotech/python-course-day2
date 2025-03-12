@@ -33,7 +33,7 @@ keypoints:
 ~~~python
 # A simple example of a dictionary
 # The keys can be strings or numbers (ints or floats)
-# With the values in the dictionary do you have a bit more freedom 
+# With the values in the dictionary you have a bit more freedom 
 data = {'a': "Hello", 'b': 2, 'c': ["apple", "banana", "cherry"]}
 print(len(data))         # Output: 3
 print(data['a'])         # Output: Hello
@@ -77,13 +77,16 @@ Codon ATG codes for: Methionine
 > {: .python}
 >
 > _Hint: The order of keys may vary._
->
-> > ## Solution
-> > The program prints a dictionary with keys 'ATG', 'TAA', 'TAG', and 'TGA'. The value for 'ATG' is updated to "Start". For example:
-> > ~~~python
-> > Updated codon dictionary: {'ATG': 'Start', 'TAA': 'Stop', 'TAG': 'Stop', 'TGA': 'Stop'}
-> > ~~~
-{: .solution}
+
+<details>
+<summary>Solution</summary>
+
+The program prints a dictionary with keys `'ATG'`, `'TAA'`, `'TAG'`, and `'TGA'`. The value for `'ATG'` is updated to `"Start"`. For example:
+
+~~~python
+Updated codon dictionary: {'ATG': 'Start', 'TAA': 'Stop', 'TAG': 'Stop', 'TGA': 'Stop'}
+~~~
+</details>
 
 > ## Fill in the Blanks
 >
@@ -97,17 +100,20 @@ Codon ATG codes for: Methionine
 > {: .python}
 >
 > _Expected output: Amino acid for GGT: Glycine_
->
-> > ## Solution
-> > Replace the blank with "GGT":
-> > ~~~python
-> > amino_acid = codon_translation["GGT"]
-> > ~~~
-{: .solution}
+
+<details>
+<summary>Solution</summary>
+
+Replace the blank with `"GGT"`:
+
+~~~python
+amino_acid = codon_translation["GGT"]
+~~~
+</details>
 
 > ## Adding a New Codon
 >
-> Extend the dictionary by adding the codon "CCC" for "Proline" to the dictionary below.
+> Extend the dictionary by adding the codon `"CCC"` for `"Proline"` to the dictionary below.
 >
 > ~~~python
 > codon_dict = {"ATG": "Methionine", "TAA": "Stop"}
@@ -117,9 +123,11 @@ Codon ATG codes for: Methionine
 > {: .python}
 >
 > _Expected output: {'ATG': 'Methionine', 'TAA': 'Stop', 'CCC': 'Proline'}_
->
-> > ## Solution
-> > ~~~python
-> > codon_dict["CCC"] = "Proline"
-> > ~~~
-{: .solution}
+
+<details>
+<summary>Solution</summary>
+
+~~~python
+codon_dict["CCC"] = "Proline"
+~~~
+</details>
