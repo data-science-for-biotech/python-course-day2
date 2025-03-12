@@ -13,60 +13,33 @@ keypoints:
 - "Follow standard Python style in your code."
 - "Use docstrings to provide online help."
 ---
+
 ## Follow standard Python style in your code.
 
-
-
-
-
-*   [PEP8](https://www.python.org/dev/peps/pep-0008):
-    a style guide for Python that discusses topics such as how you should name variables,
-    how you should use indentation in your code,
-    how you should structure your `import` statements,
-    etc.
-    Adhering to PEP8 makes it easier for other Python developers to read and understand your code,
-    and to understand what their contributions should look like.
-    The [PEP8 application and Python library](https://pypi.python.org/pypi/pep8)
-    can check your code for compliance with PEP8.
-
-*   [numpydoc](https://github.com/numpy/numpy/blob/master/doc/HOWTO_DOCUMENT.rst.txt):
-    a standard for API documentation through docstrings used by NumPy, SciPy,
-    and many other Python scientific computing pacakges.
-    Adhering to numpydoc helps ensure that users and developers 
-    will know how to use your Python package,
-    either for their own analyses or as a component of their own Python packages.
-    If you use numpydoc,
-    you can also use existing tools such as [Sphinx](http://sphinx-doc.org/)
-    to automatically generate HTML documentation for your API.
-
-*   [Semantic Versioning](http://semver.org/):
-    a standard describing how to define versions of your software
-    no matter what language it's written in.
-    Using Semantic Versioning makes it easy for other developers to understand
-    what is guaranteed to stay the same and what might change across versions of your software.
-
-
+* [PEP8](https://www.python.org/dev/peps/pep-0008) is a style guide for Python that discusses topics such as:
+  - How you should name variables.
+  - How you should use indentation.
+  - How to structure your `import` statements.
+  <br>
+Adhering to PEP8 makes it easier for other Python frieds (and yourself) to read and understand your code. Tools like the [PEP8 library](https://pypi.python.org/pypi/pep8) or the "flake8" VS code, can help check your code for compliance.  
+<br><br>
 ~~~python
-# Run the below - The Zen of Python
+# Run the Zen of Python
 import this
 ~~~
 {: .python}
+<br>
+## Use docstrings for functions
 
+* If the first statement in a function is a string literal (not assigned to a variable), it becomes the function's docstring.
+* Docstrings provide online help accessible via the `help()` function.
 
-## Use docstrings to provide online help.
-
-*   If the first thing in a function is a character string
-    that is not assigned to a variable,
-    Python attaches it to the function as the online help.
-*   Called a *docstring* (short for "documentation string").
-
-~~~
+~~~python
 def average(values):
-    "Return average of values, or None if no values are supplied."
-
+    "Return the average of values, or None if no values are supplied."
     if len(values) == 0:
         return None
-    return sum(values) / average(values)
+    return sum(values) / len(values)
 
 help(average)
 ~~~
@@ -75,17 +48,15 @@ help(average)
 Help on function average in module __main__:
 
 average(values)
-    Return average of values, or None if no values are supplied.
+    Return the average of values, or None if no values are supplied.
 ~~~
 {: .output}
 
 > ## Multiline Strings
 >
-> Often use *multiline strings* for documentation.
-> These start and end with three quote characters (either single or double)
-> and end with three matching characters.
+> Often use *multiline strings* for documentation. These start and end with three quote characters (single or double).
 >
-> ~~~
+> ~~~python
 > """This string spans
 > multiple lines.
 >
@@ -94,13 +65,86 @@ average(values)
 > {: .python}
 {: .callout}
 
+## Examples of Bad/Not Pythonic Code
+
+### Example 1: Poor Naming and Formatting
+~~~python
+# Bad: confusing function name, lack of whitespace, and multiple statements on one line
+def f(x,y):return x+y; print(f(1,2))
+~~~
+{: .python}
+
+*Issues:*
+- The function name `f` is not descriptive.
+- No whitespace around operators or after commas.
+- Multiple statements on one line reduce readability.
+
+*Improved Version:*
+~~~python
+def add_numbers(a, b):
+    """
+      Return the sum of a and b
+    """
+    return a + b
+
+result = add_numbers(1, 2)
+print(result)
+~~~
+{: .python}
+
+### Example 2: Importance of Good Comments
+
+*Without Comments:*
+~~~python
+def process_data(data):
+    result = []
+    for d in data:
+        if d % 2 == 0:
+            result.append(d ** 2)
+        else:
+            result.append(d ** 3)
+    return result
+
+print(process_data([1, 2, 3, 4]))
+~~~
+{: .python}
+
+*Issues:*
+- missing comments and doc string
+
+*With Clear Comments:*
+~~~python
+def process_data(data):
+    """
+    Process each number in the list:
+    - Square even numbers.
+    - Cube odd numbers.
+    """
+    result = []
+    for d in data:
+        # Check if the number is even
+        if d % 2 == 0:
+            result.append(d ** 2)
+        else:
+            # Number is odd: cube it
+            result.append(d ** 3)
+    return result
+
+print(process_data([1, 2, 3, 4]))
+~~~
+{: .python}
+
+
+
+## Exercises
+
 > ## What Will Be Shown?
 >
 > Highlight the lines in the code below that will be available as online help.
-> Are there lines that should be made available, but won't be?
+> Are there lines that should be made available but won't be?
 > Will any lines produce a syntax error or a runtime error?
 >
-> ~~~
+> ~~~python
 > "Find maximum edit distance between multiple sequences."
 > # This finds the maximum distance between all sequences.
 >
@@ -119,14 +163,13 @@ average(values)
 >     return highest
 > ~~~
 > {: .source}
-{: .challenge}
 
 > ## Document This
 >
 > Turn the comment on the following function into a docstring
 > and check that `help` displays it properly.
 >
-> ~~~
+> ~~~python
 > def middle(a, b, c):
 >     # Return the middle value of three.
 >     # Assumes the values can actually be compared.
@@ -135,77 +178,72 @@ average(values)
 >     return values[1]
 > ~~~
 > {: .source}
-{: .challenge}
 
-> ## Clean Up This Code
+> ## Messy code
 >
-> 1. Read this short program and try to predict what it does.
-> 2. Run it: how accurate was your prediction?
-> 3. Refactor the program to make it more readable.
->    Remember to run it after each change to ensure its behavior hasn't changed.
-> 4. Compare your rewrite with your neighbor's.
->    What did you do the same?
->    What did you do differently, and why?
 >
-> ~~~
-> import sys
-> n = int(sys.argv[1])
-> s = sys.argv[2]
-> print(s)
+> 1. Read the code and try to predict what it does.
+> 2. Run it: Does it produce the expected counts?
+> 3. Refactor the code to improve its readability and structure.
+> 4. Compare your solution with a partner and discuss your changes.
+>
+> ~~~python
+> # Messy code - fix me!
+> dna = "ATCGATCGAATTCG"
+> k = 3
+> kmers = {}
 > i = 0
-> while i < n:
->     # print('at', j)
->     new = ''
->     for j in range(len(s)):
->         left = j-1
->         right = (j+1)%len(s)
->         if s[left]==s[right]: new += '-'
->         else: new += '*'
->     s=''.join(new)
->     print(s)
->     i += 1
+> while i < len(dna):
+>     if i + k <= len(dna):
+>         s = ""
+>         j = 0
+>         while j < k:
+>             s = s + dna[i+j]
+>             j = j + 1
+>         if s in kmers:
+>             kmers[s] = kmers[s] + 1
+>         else:
+>             kmers[s] = 1
+>     i = i + 1
+> print(kmers)
 > ~~~
 > {: .source}
+> ## Solution
 >
-> Here's one solution.
->
-> ~~~
-> def string_machine(input_string, iterations):
+> ~~~python
+> def count_kmers(dna, k):
 >     """
->     Takes input_string and generates a new string with -'s and *'s
->     corresponding to characters that have identical adjacent characters
->     or not, respectively.  Iterates through this procedure with the resultant
->     strings for the supplied number of iterations.
->     """
->     print(input_string)
->     old = input_string
->     for i in range(iterations):
->         new = ''
->         # iterate through characters in previous string
->         for j in range(len(input_string)):
->             left = j-1
->             right = (j+1)%len(input_string) # ensure right index wraps around
->             if old[left]==old[right]:
->                 new += '-'
->             else:
->                 new += '*'
->         print(new)
->         # store new string as old
->         old = new
+>     Count all k-mers (substrings of length k) in the given DNA string.
 >
-> string_machine('et cetera', 10)
+>     Parameters:
+>         dna (str): The DNA sequence.
+>         k (int): The length of each k-mer.
+>
+>     Returns:
+>         dict: A dictionary mapping each k-mer to its count.
+>     """
+>     counts = {}
+>     for i in range(len(dna) - k + 1):
+>         kmer = dna[i:i+k]
+>         counts[kmer] = counts.get(kmer, 0) + 1
+>     return counts
+>
+> # Example usage
+> dna_sequence = "ATCGATCGAATTCG"
+> kmer_length = 3
+> kmer_counts = count_kmers(dna_sequence, kmer_length)
+> print(kmer_counts)
 > ~~~
 > {: .source}
-{: .challenge}
 
-> ## Finding Neighbors
+
+
+> ## Finding Neighbors (- Extra execise if there is time)
 >
-> This function is supposed to find the minimum value adjacent to 
-> (but not in) a specified location in an array.
-> For what inputs does it produce the wrong answer?
-> How can it be repaired?
+> This function is supposed to find if any neighbors of a specified location in an array are negative.
+> For what inputs does it produce the wrong answer? How can it be repaired?
 >
-> ~~~
+> ~~~python
 > def any_negative_neighbors(array, i, j, use_diagonals):
 >     '''
 >     Return True if any neighbors of (i,j) are negative, or False if none are.
@@ -227,4 +265,3 @@ average(values)
 >     if i < width and j < height and array[i+1, j+1] < 0: return True
 > ~~~
 > {: .source}
-{: .challenge}
