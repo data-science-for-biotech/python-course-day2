@@ -68,13 +68,13 @@ Python code and running Jupyter Notebooks.
 
 > ## Command line (Terminal)
 >
-> 1\. Navigate to the `data` directory:
+> 1\. Navigate to the `exercises` directory:
 >
 > > ## Unix shell
 > > If you're using a Unix shell application, such as Terminal app in macOS, Console or Terminal
 > > in Linux, or WSL on Windows, execute the following command:
 > > ~~~
-> > cd ~/course/exercises/data
+> > cd ~/course/exercises
 > > ~~~
 > > {: .language-bash}
 > {: .solution}

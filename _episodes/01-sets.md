@@ -1,7 +1,7 @@
 ---
-title: "Sets (Kai)"
+title: "Sets"
 teaching: 5
-exercises: 5
+exercises: 10
 questions:
 - "What is a set, and how do I use it?"
 objectives:

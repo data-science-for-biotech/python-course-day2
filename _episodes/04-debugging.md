@@ -1,6 +1,6 @@
 ---
-title: "Debugging (Niko)"
-teaching: 10
+title: "Debugging"
+teaching: 15
 exercises: 15
 questions:
 - "How can I debug my program?"
