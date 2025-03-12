@@ -31,7 +31,9 @@ keypoints:
 - **Values:** Use `dict.values()` to get all values in the dictionary.
 
 ~~~python
-# A simple example of a dictionary in biotechnology
+# A simple example of a dictionary
+# The keys can be strings or numbers (ints or floats)
+# With the values in the dictionary do you have a bit more freedom 
 data = {'a': "Hello", 'b': 2, 'c': ["apple", "banana", "cherry"]}
 print(len(data))         # Output: 3
 print(data['a'])         # Output: Hello
