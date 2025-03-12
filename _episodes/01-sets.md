@@ -1,6 +1,6 @@
 ---
 title: "Sets"
-teaching: 5
+teaching: 10
 exercises: 10
 questions:
 - "What is a set, and how do I use it?"
