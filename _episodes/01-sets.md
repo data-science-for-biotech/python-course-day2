@@ -14,7 +14,7 @@ keypoints:
 ---
 ## A set keeps an unsorted unique collection of things.
 
-* Different from lists
+* Different from lists -- TEST
   * Lists have a defined order of elements, sets are unordered.
   * Lists can contain the same value multiple times, sets do not.
 * Sets have a number of fast operations you can use to compare or combine them.
