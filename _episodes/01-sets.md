@@ -6,82 +6,91 @@ questions:
 - "What is a set, and how do I use it?"
 objectives:
 - "Explain how sets work."
-- "Learn about set operations"
+- "Learn about set operations."
 keypoints:
-- "A set stores unsorted unique values."
-- "The set list contains no values."
-- "Sets may contain values of different types."
+- "A set stores an unordered collection of unique values."
+- "Sets automatically remove duplicate entries."
+- "Sets support operations like union, intersection, and difference."
 ---
-## A set keeps an unsorted unique collection of things.
 
-* Different from lists -- TEST
-  * Lists have a defined order of elements, sets are unordered.
-  * Lists can contain the same value multiple times, sets do not.
-* Sets have a number of fast operations you can use to compare or combine them.
-* Sets are great to keep track of things where order an count don't matter.
-* If you put a value that is already in a set into that set again, the set will not change.
+## A set keeps an unordered collection of unique items.
 
-~~~
+* **Different from lists**
+  * Lists have a defined order and can contain duplicate values, whereas sets are unordered and contain only unique items.
+* **Efficient operations**
+  * Sets offer fast membership testing and support operations like union, intersection, and difference.
+* **Mutability**
+  * You can add or remove items from a set, but duplicate entries are ignored.
+
+~~~python
 beatles = set(['John', 'Paul', 'George', 'Ringo'])
 print('Beatles:', beatles)
-print('length:', len(beatles))
-beatles.add('Ringo')
+print('Length:', len(beatles))
+beatles.add('Ringo')  # Adding 'Ringo' again does nothing
 print('Beatles:', beatles)
-print('length:', len(beatles))
-
+print('Length:', len(beatles))
 ~~~
 {: .python}
+
 ~~~
-Beatles: {'John', 'Ringo', 'Paul', 'George'}
-length: 4
-Beatles: {'John', 'Ringo', 'Paul', 'George'}
-length: 4
+Beatles: {'John', 'Paul', 'George', 'Ringo'}
+Length: 4
+Beatles: {'John', 'Paul', 'George', 'Ringo'}
+Length: 4
 ~~~
 {: .output}
 
-## Use `in` to check if something is in a set
+## Check Membership with `in`
 
-Sets allow for efficient check of members.
+Use the `in` keyword to test if an element exists in a set.
 
-~~~
+~~~python
 print('Ringo is one of the Beatles:', 'Ringo' in beatles)
 print('Keith is one of the Beatles:', 'Keith' in beatles)
 ~~~
 {: .python}
+
 ~~~
 Ringo is one of the Beatles: True
 Keith is one of the Beatles: False
 ~~~
 {: .output}
 
-## You can add values to the set by using `add()`
+## Adding and Removing Items
 
-~~~
+### Add Items with `add()`
+
+~~~python
 beatles.add('Pete')
-print('beatles is now:', beatles)
+print('After adding Pete:', beatles)
 ~~~
 {: .python}
+
 ~~~
-beatles is now: {'Pete', 'John', 'Ringo', 'Paul', 'George'}
+After adding Pete: {'John', 'Paul', 'George', 'Ringo', 'Pete'}
 ~~~
 {: .output}
 
-## You can remove values from the set by using `remove()`
+### Remove Items with `remove()`
 
-~~~
+~~~python
 beatles.remove('Pete')
-print('beatles is now:', beatles)
+print('After removing Pete:', beatles)
 ~~~
 {: .python}
+
 ~~~
-beatles is now: {'John', 'Ringo', 'Paul', 'George'}
+After removing Pete: {'John', 'Paul', 'George', 'Ringo'}
 ~~~
 {: .output}
 
+## Set Operations
 
-## Multiple sets can be combined using `union()`
+### Union of Sets
 
-~~~
+Combine two sets using `union()` (or the `|` operator):
+
+~~~python
 odd = set([1, 3, 5, 7, 9])
 even = set([2, 4, 6, 8, 10])
 all_numbers = odd.union(even)
@@ -90,77 +99,73 @@ print('Even numbers:', even)
 print('All numbers:', all_numbers)
 ~~~
 {: .python}
+
 ~~~
-Odd numbers: {1, 3, 5, 9, 7}
-Even numbers: {8, 2, 10, 4, 6}
+Odd numbers: {1, 3, 5, 7, 9}
+Even numbers: {2, 4, 6, 8, 10}
 All numbers: {1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
 ~~~
 {: .output}
 
-> ## Sets are unordered
-> As sets are unordered, the order of the elements can be different when you print this.
+> ## Note
+> Since sets are unordered, the printed order of elements may vary.
 {: .callout}
 
-## You can intersect two sets
-This gives a new set containing only members existing in both sets
+### Intersection of Sets
 
-~~~
+Retrieve common elements with `intersection()`:
+
+~~~python
 primes = set([2, 3, 5, 7])
 odd_primes = primes.intersection(odd)
-print('Primes that are also odd numbers:', odd_primes)
+print('Primes that are odd:', odd_primes)
 ~~~
 {: .python}
-~~~
-Primes that are also odd numbers: {3, 5, 7}
-~~~
-{:output}
-
-## You can get the difference between to sets
-
-This gives a new set containing all members of the first set not in the second set
 
 ~~~
+Primes that are odd: {3, 5, 7}
+~~~
+{: .output}
+
+### Difference of Sets
+
+Get elements in one set but not in another with `difference()`:
+
+~~~python
 even_non_primes = even.difference(primes)
-print('Even numbers that are not prime numbers:', even_non_primes)
+print('Even numbers that are not prime:', even_non_primes)
 ~~~
 {: .python}
+
 ~~~
-Even numbers that are not prime numbers: {8, 10, 4, 6}
+Even numbers that are not prime: {4, 6, 8, 10}
 ~~~
 {: .output}
 
-## For `difference()`, the order matters
+> ## Order Matters in `difference()`
+> The result of `difference()` depends on the order of the sets.
+{: .callout}
 
-Using the same sets in a different order gives a different result.
+### Converting a Set to a Sorted List
 
-~~~
-uneven_primes = primes.difference(even)
-print('Primes that are not even:', uneven_primes)
-~~~
-{: .python}
-~~~
-Primes that are not even: {3, 5, 7}
-~~~
-{: .output}
+To display a set in order, convert it to a list and sort it:
 
-## Convert to a list and sort to get sorted output
-
-~~~
-sorted_primes = list(primes)
-sorted_primes.sort()
+~~~python
+sorted_primes = sorted(primes)
 print('Sorted primes:', sorted_primes)
 ~~~
 {: .python}
+
 ~~~
 Sorted primes: [2, 3, 5, 7]
 ~~~
 {: .output}
 
-> ## Initialising
+> ## Initialising Challenge
 >
 > What does the following program print?
 >
-> ~~~
+> ~~~python
 > letters = set('Hello world!')
 > sorted_letters = list(letters)
 > sorted_letters.sort()
@@ -169,20 +174,19 @@ Sorted primes: [2, 3, 5, 7]
 > {: .python}
 {: .challenge}
 
-> ## Fill in the Blanks
+> ## Fill in the Blanks Challenge
 >
 > Fill in the blanks so that the program below produces the output shown.
 >
-> ~~~
+> ~~~python
 > multiples_of_two = set([2, 4, 6, 8, 10])
 > multiples_of_three = set([3, 6, 9])
-> result1 = multiples_of_two._______(multiples_of_three)
+> result1 = multiples_of_two.intersection(multiples_of_three)
 > print('1', result1)
-> result2 = multiples_of_____.______(multiples_of______)
-> sorted_result2 = list(result2)
-> sorted_result2.sort()
+> result2 = multiples_of_three.difference(multiples_of_two)
+> sorted_result2 = sorted(result2)
 > print('2', sorted_result2)
-> ~~~~
+> ~~~
 > {: .python}
 >
 > ~~~
@@ -192,3 +196,32 @@ Sorted primes: [2, 3, 5, 7]
 > {: .output}
 {: .challenge}
 
+> ## Comparing Bacterial Isolates
+>
+> You have two sets representing bacteria isolated from two different sources:
+>
+> ~~~python
+> clinical_isolates = {"Staphylococcus aureus", "Escherichia coli", "Pseudomonas aeruginosa", "Klebsiella pneumoniae"}
+> environmental_isolates = {"Bacillus subtilis", "Escherichia coli", "Staphylococcus epidermidis", "Pseudomonas aeruginosa"}
+> ~~~
+>
+> Write code to:
+>
+> 1. Print the bacteria common to both sets (intersection).
+> 2. Print the bacteria unique to the clinical sample (difference).
+> 3. Print all unique bacteria from both sets (union) as a sorted list.
+>
+> > ## Solution
+> > ~~~python
+> > # 1. Intersection: bacteria present in both samples
+> > common_bacteria = clinical_isolates.intersection(environmental_isolates)
+> > print("Common bacteria:", common_bacteria)
+> >
+> > # 2. Difference: bacteria unique to the clinical sample
+> > unique_clinical = clinical_isolates.difference(environmental_isolates)
+> > print("Unique to clinical sample:", unique_clinical)
+> >
+> > # 3. Union: all unique bacteria from both sets, sorted alphabetically
+> > all_bacteria = sorted(clinical_isolates.union(environmental_isolates))
+> > print("All unique bacteria:", all_bacteria)
+> > ~~~
