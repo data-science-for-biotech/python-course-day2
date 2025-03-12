@@ -176,14 +176,14 @@ Sorted primes: [2, 3, 5, 7]
 
 > ## Fill in the Blanks Challenge
 >
-> Fill in the blanks so that the program below produces the output shown.
+> Fill in the blanks "__" so that the program below produces the output shown.
 >
 > ~~~python
 > multiples_of_two = set([2, 4, 6, 8, 10])
 > multiples_of_three = set([3, 6, 9])
-> result1 = multiples_of_two.intersection(multiples_of_three)
+> result1 = multiples_of_two.__(multiples_of_three)
 > print('1', result1)
-> result2 = multiples_of_three.difference(multiples_of_two)
+> result2 = multiples_of_three.__(multiples_of_two)
 > sorted_result2 = sorted(result2)
 > print('2', sorted_result2)
 > ~~~
