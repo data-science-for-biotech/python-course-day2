@@ -1,5 +1,5 @@
 ---
-title: "Dictionaries in Biotechnology"
+title: "Dictionaries"
 teaching: 15
 exercises: 15
 questions:
