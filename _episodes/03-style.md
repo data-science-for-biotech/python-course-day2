@@ -38,7 +38,9 @@ import this
 
 ~~~python
 def average(values):
-    "Return the average of values, or None if no values are supplied."
+    """
+       Return the average of values, or None if no values are supplied.
+    """
     if len(values) == 0:
         return None
     return sum(values) / len(values)
