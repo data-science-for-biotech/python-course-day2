@@ -63,7 +63,6 @@ print("Codon ATG codes for:", codon_to_amino["ATG"])
 Codon ATG codes for: Methionine
 ~~~
 {: .output}
-
 > ## Initialising
 >
 > What does the following program print?
@@ -74,19 +73,20 @@ Codon ATG codes for: Methionine
 > codon_dict["TGA"] = "Stop"
 > print("Updated codon dictionary:", codon_dict)
 > ~~~
-> {: .python}
+> {: .language-python}
 >
 > _Hint: The order of keys may vary._
-
-<details>
-<summary>Solution</summary>
-
-The program prints a dictionary with keys `'ATG'`, `'TAA'`, `'TAG'`, and `'TGA'`. The value for `'ATG'` is updated to `"Start"`. For example:
-
-~~~python
-Updated codon dictionary: {'ATG': 'Start', 'TAA': 'Stop', 'TAG': 'Stop', 'TGA': 'Stop'}
-~~~
-</details>
+>
+> > ## Solution
+> >
+> > The program prints a dictionary with keys `'ATG'`, `'TAA'`, `'TAG'`, and `'TGA'`. The value for `'ATG'` is updated to `"Start"`. For example:
+> >
+> > ~~~
+> > Updated codon dictionary: {'ATG': 'Start', 'TAA': 'Stop', 'TAG': 'Stop', 'TGA': 'Stop'}
+> > ~~~
+> > {: .output}
+> {: .solution}
+{: .challenge}
 
 > ## Fill in the Blanks
 >
@@ -97,19 +97,21 @@ Updated codon dictionary: {'ATG': 'Start', 'TAA': 'Stop', 'TAG': 'Stop', 'TGA': 
 > amino_acid = codon_translation[______]
 > print("Amino acid for GGT:", amino_acid)
 > ~~~
-> {: .python}
+> {: .language-python}
 >
 > _Expected output: Amino acid for GGT: Glycine_
+>
+> > ## Solution
+> >
+> > Replace the blank with `"GGT"`:
+> >
+> > ~~~python
+> > amino_acid = codon_translation["GGT"]
+> > ~~~
+> > {: .language-python}
+> {: .solution}
+{: .challenge}
 
-<details>
-<summary>Solution</summary>
-
-Replace the blank with `"GGT"`:
-
-~~~python
-amino_acid = codon_translation["GGT"]
-~~~
-</details>
 
 > ## Adding a New Codon
 >
@@ -120,14 +122,15 @@ amino_acid = codon_translation["GGT"]
 > # Add code here
 > print(codon_dict)
 > ~~~
-> {: .python}
+> {: .language-python}
 >
 > _Expected output: {'ATG': 'Methionine', 'TAA': 'Stop', 'CCC': 'Proline'}_
-
-<details>
-<summary>Solution</summary>
-
-~~~python
-codon_dict["CCC"] = "Proline"
-~~~
-</details>
+>
+> > ## Solution
+> >
+> > ~~~python
+> > codon_dict["CCC"] = "Proline"
+> > ~~~
+> > {: .language-python}
+> {: .solution}
+{: .challenge}
