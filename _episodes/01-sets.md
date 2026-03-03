@@ -204,6 +204,7 @@ Sorted primes: [2, 3, 5, 7]
 > clinical_isolates = {"Staphylococcus aureus", "Escherichia coli", "Pseudomonas aeruginosa", "Klebsiella pneumoniae"}
 > environmental_isolates = {"Bacillus subtilis", "Escherichia coli", "Staphylococcus epidermidis", "Pseudomonas aeruginosa"}
 > ~~~
+> {: .language-python}
 >
 > Write code to:
 >
@@ -211,21 +212,21 @@ Sorted primes: [2, 3, 5, 7]
 > 2. Print the bacteria unique to the clinical sample (difference).
 > 3. Print all unique bacteria from both sets (union) as a sorted list.
 >
-> <details>
-> <summary>Solution</summary>
->
-> ~~~python
-> # 1. Intersection: bacteria present in both samples
-> common_bacteria = clinical_isolates.intersection(environmental_isolates)
-> print("Common bacteria:", common_bacteria)
-> 
-> # 2. Difference: bacteria unique to the clinical sample
-> unique_clinical = clinical_isolates.difference(environmental_isolates)
-> print("Unique to clinical sample:", unique_clinical)
-> 
-> # 3. Union: all unique bacteria from both sets, sorted alphabetically
-> all_bacteria = sorted(clinical_isolates.union(environmental_isolates))
-> print("All unique bacteria:", all_bacteria)
-> ~~~
->
-> </details>
+> > ## Solution
+> >
+> > ~~~python
+> > # 1. Intersection: bacteria present in both samples
+> > common_bacteria = clinical_isolates.intersection(environmental_isolates)
+> > print("Common bacteria:", common_bacteria)
+> > 
+> > # 2. Difference: bacteria unique to the clinical sample
+> > unique_clinical = clinical_isolates.difference(environmental_isolates)
+> > print("Unique to clinical sample:", unique_clinical)
+> > 
+> > # 3. Union: all unique bacteria from both sets, sorted alphabetically
+> > all_bacteria = sorted(clinical_isolates.union(environmental_isolates))
+> > print("All unique bacteria:", all_bacteria)
+> > ~~~
+> > {: .language-python}
+> {: .solution}
+{: .challenge}
