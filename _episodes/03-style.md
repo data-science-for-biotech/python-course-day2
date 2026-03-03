@@ -47,7 +47,7 @@ def average(values):
 
 help(average)
 ~~~
-{: .python}
+{: .language-python}
 
 ~~~
 Help on function average in module __main__:
@@ -67,7 +67,7 @@ average(values)
 >
 > Blank lines are allowed."""
 > ~~~
-> {: .python}
+> {: .language-python}
 {: .callout}
 
 ## Examples of Bad/Not Pythonic Code
@@ -77,7 +77,7 @@ average(values)
 # Bad: confusing function name, lack of whitespace, and multiple statements on one line
 def f(x,y):return x+y; print(f(1,2))
 ~~~
-{: .python}
+{: .language-python}
 
 *Issues:*
 - The function name `f` is not descriptive.
@@ -95,7 +95,7 @@ def add_numbers(a, b):
 result = add_numbers(1, 2)
 print(result)
 ~~~
-{: .python}
+{: .language-python}
 
 ### Example 2: Importance of Good Comments
 
@@ -112,7 +112,7 @@ def process_data(data):
 
 print(process_data([1, 2, 3, 4]))
 ~~~
-{: .python}
+{: .language-python}
 
 *Issues:*
 - Missing comments and docstring.
@@ -137,7 +137,7 @@ def process_data(data):
 
 print(process_data([1, 2, 3, 4]))
 ~~~
-{: .python}
+{: .language-python}
 
 ## Exercises
 
@@ -165,7 +165,8 @@ print(process_data([1, 2, 3, 4]))
 >     # Report.
 >     return highest
 > ~~~
-> {: .source}
+> {: .language-python}
+{: .challenge}
 
 > ## Document This
 >
@@ -180,7 +181,8 @@ print(process_data([1, 2, 3, 4]))
 >     values.sort()
 >     return values[1]
 > ~~~
-> {: .source}
+> {: .language-python}
+{: .challenge}
 
 > ## Messy code
 >
@@ -209,37 +211,34 @@ print(process_data([1, 2, 3, 4]))
 >     i = i + 1
 > print(kmers)
 > ~~~
-> {: .source}
-
-<details>
-<summary>Solution</summary>
-
-~~~python
-def count_kmers(dna, k):
-    """
-    Count all k-mers (substrings of length k) in the given DNA string.
-
-    Parameters:
-        dna (str): The DNA sequence.
-        k (int): The length of each k-mer.
-
-    Returns:
-        dict: A dictionary mapping each k-mer to its count.
-    """
-    counts = {}
-    for i in range(len(dna) - k + 1):
-        kmer = dna[i:i+k]
-        counts[kmer] = counts.get(kmer, 0) + 1
-    return counts
-
-# Example usage
-dna_sequence = "ATCGATCGAATTCG"
-kmer_length = 3
-kmer_counts = count_kmers(dna_sequence, kmer_length)
-print(kmer_counts)
-~~~
-</details>
-{: .source}
-
-> ~~~
-> {: .source}
+> {: .language-python}
+>
+> > ## Solution
+> >
+> > ~~~python
+> > def count_kmers(dna, k):
+> >     """
+> >     Count all k-mers (substrings of length k) in the given DNA string.
+> >
+> >     Parameters:
+> >         dna (str): The DNA sequence.
+> >         k (int): The length of each k-mer.
+> >
+> >     Returns:
+> >         dict: A dictionary mapping each k-mer to its count.
+> >     """
+> >     counts = {}
+> >     for i in range(len(dna) - k + 1):
+> >         kmer = dna[i:i+k]
+> >         counts[kmer] = counts.get(kmer, 0) + 1
+> >     return counts
+> >
+> > # Example usage
+> > dna_sequence = "ATCGATCGAATTCG"
+> > kmer_length = 3
+> > kmer_counts = count_kmers(dna_sequence, kmer_length)
+> > print(kmer_counts)
+> > ~~~
+> > {: .language-python}
+> {: .solution}
+{: .challenge}
