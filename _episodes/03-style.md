@@ -30,7 +30,14 @@ import this
 {: .python}
 
 <br>
+ 
 
+## Use functions 
+* In a python script is all functions normally in the top of the script just under the library imports.
+* When to use functions?
+- **Re-used code:** When code needs to executed multiple times
+- **Encapsulate logic:** functions can be used to break complex scripts into smaller, testable, and readable chunks.
+  
 ## Use docstrings for functions
 
 * If the first statement in a function is a string literal (not assigned to a variable), it becomes the function's docstring.
