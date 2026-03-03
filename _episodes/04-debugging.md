@@ -233,14 +233,59 @@ and to turn every assumption (or mistake) into an assertion,
 it will actually take us *less* time to produce working programs,
 not more.
 
-> ## Debug With a Neighbor
->
-> Take a function that you have written today, and introduce a tricky bug.
-> Your function should still run, but will give the wrong output.
-> Switch seats with your neighbor and attempt to debug
-> the bug that they introduced into their function.
-> Which of the principles discussed above did you find helpful?
+> ## Debug the exercises underhere with a Neighbor or by yourself
+> 1. Run the Python code blocks in a Jupyter Notebook cell.
+> 2. Read the output. Is Python crashing? Is the output as expected?
+> 3. Attempt to solve the problem by correcting the code.
+> 
+> *Which of the debugging principles discussed above did you find most helpful?*
 {: .challenge}
+
+
+
+> ## Finding the Middle
+>
+> A colleague has written a script to extract the median temperature reading from a sorted list of daily measurements. However, when they run the script, Python produces a `TypeError`.
+>
+> Identify the bug in the code below. Why is Python rejecting the `middle_index` variable, and how can you fix it?
+>
+> ~~~python
+> temperatures = [14.5, 15.2, 16.1, 17.0, 18.3]
+> 
+> # Calculate the index for the middle element
+> middle_index = len(temperatures) / 2
+> 
+> # Extract the median temperature
+> median_temp = temperatures[middle_index]
+> print("The median temperature is:", median_temp)
+> ~~~
+> {: .language-python}
+>
+> ~~~
+> TypeError: list indices must be integers or slices, not float
+> ~~~
+> {: .output}
+>
+> > ## Solution
+> >
+> > * In Python 3, the standard division operator `/` always returns a floating-point number, even if the result is a whole number (e.g., `5 / 2` evaluates to `2.5`). 
+> > * Lists require integers for indexing. Python throws a `TypeError` because it cannot use a float like `2.5` to find a position in a list.
+> > * To fix this, use the integer (floor) division operator `//`, which discards the fractional part and returns an integer. Alternatively, you can cast the result to an integer using `int()`.
+> >
+> > **Corrected code using integer division:**
+> > ~~~python
+> > temperatures = [14.5, 15.2, 16.1, 17.0, 18.3]
+> > 
+> > # Use integer division (//) to ensure an int is returned
+> > middle_index = len(temperatures) // 2
+> > 
+> > median_temp = temperatures[middle_index]
+> > print("The median temperature is:", median_temp)
+> > ~~~
+> > {: .language-python}
+> {: .solution}
+{: .challenge}
+
 
 > ## Not Supposed to be the Same
 >
@@ -265,7 +310,7 @@ not more.
 >     bmi = calculate_bmi(height, weight)
 >     print("Patient's BMI is: %f" % bmi)
 > ~~~
-> {: .python}
+> {: .language-python}
 >
 > ~~~
 > Patient's BMI is: 21.604938
@@ -273,40 +318,90 @@ not more.
 > Patient's BMI is: 21.604938
 > ~~~
 > {: .output}
+>
+> > ## Solution
+> >
+> > * The loop is not being utilised correctly. `height` and `weight` are always set as the first patient's data (`patients[0]`) during each iteration of the loop. It should unpack the current `patient` variable.
+> > * The height/weight variables are reversed. The list stores `[weight, height]`, so unpacking into `height, weight` assigns the wrong values to the variables, which are then passed incorrectly to `calculate_bmi(...)`.
+> > * To ensure later changes work correctly, the researcher should use descriptive variable names, add type hinting, and write test cases using `assert` statements to verify the output of the function before running it on the full dataset.
+> >
+> > **Corrected code:**
+> > ~~~python
+> > patients = [[70, 1.8], [80, 1.9], [150, 1.7]]
+> >
+> > def calculate_bmi(weight, height):
+> >     return weight / (height ** 2)
+> >
+> > for patient in patients:
+> >     weight, height = patient
+> >     bmi = calculate_bmi(weight, height)
+> >     print("Patient's BMI is: %f" % bmi)
+> > ~~~
+> > {: .language-python}
+> {: .solution}
+{: .challenge}
 
-<details>
-<summary>Solution</summary>
-
-* The loop is not being utilised correctly. `height` and `weight` are always set as the first patient's data during each iteration of the loop.
-
-* The height/weight variables are reversed in the function call to `calculate_bmi(...)`
-</details>
+> ## Errors in Peptide Parsing
+>
+> A bioinformatics student is writing a script to iterate through a list of short peptide sequences. The goal of the code is to examine each peptide, extract the first and last amino acid, and count how many of the peptides begin with Methionine (`"M"`).
+>
+> When executed, the script produces inaccurate counts and eventually crashes with an `IndexError`.
+>
+> Identify the three distinct indexing bugs in the code below. Explain why each occurs and rewrite the script so it functions correctly.
+>
+> ~~~python
+> peptides = ["MVHLTPE", "VHLTPE", "MTEYKL", "GTEYKL"]
+> methionine_count = 0
+>
+> # Loop through the list of peptides
+> for i in range(1, len(peptides) + 1):
+>     current_peptide = peptides[i]
+>     
+>     # Extract first and last amino acid of the current peptide
+>     first_aa = current_peptide[1]
+>     last_aa = current_peptide[len(current_peptide)]
+>     
+>     # Check if the peptide starts with Methionine
+>     if first_aa == "M":
+>         methionine_count = methionine_count + 1
+>
+> print("Total peptides starting with Methionine:", methionine_count)
+> ~~~
+> {: .language-python}
+>
+> ~~~
+> IndexError: string index out of range
+> ~~~
+> {: .output}
+>
+> > ## Solution
+> >
+> > * **Bug 1: 1-based list indexing.** The `range(1, len(peptides) + 1)` loop attempts to start at index `1` (skipping the first item at index `0`) and ends at `len(peptides)` (index `4`). Since the list only has indices `0` through `3`, calling `peptides[4]` will throw a list `IndexError`.
+> > * **Bug 2: 1-based string indexing.** `current_peptide[1]` extracts the *second* amino acid, not the first. Python uses zero-based indexing for strings as well as lists, so the first character is always at index `0`.
+> > * **Bug 3: Length boundary error.** `current_peptide[len(current_peptide)]` attempts to access an index equal to the total length of the string. Because indices start at `0`, the final valid index is always `length - 1`. This throws a string `IndexError`.
+> > 
+> > 
+> >
+> > **Corrected code:**
+> > ~~~python
+> > peptides = ["MVHLTPE", "VHLTPE", "MTEYKL", "GTEYKL"]
+> > methionine_count = 0
+> >
+> > # Correctly iterate using the items directly (more Pythonic)
+> > # Alternatively, use: for i in range(len(peptides)):
+> > for current_peptide in peptides:
+> >     
+> >     # Index 0 is the first element, -1 is the last element
+> >     first_aa = current_peptide[0]
+> >     last_aa = current_peptide[-1]
+> >     
+> >     if first_aa == "M":
+> >         methionine_count = methionine_count + 1
+> >
+> > print("Total peptides starting with Methionine:", methionine_count)
+> > ~~~
+> > {: .language-python}
+> {: .solution}
+{: .challenge}
 
 ---
-
-<details>
-<summary>Hidden Debugging Script (for students without a function to debug)</summary>
-
-```python
-def count_kmers(dna, k):
-    """
-    Count all k-mers (substrings of length k) in the given DNA string.
-
-    Parameters:
-        dna (str): The DNA sequence.
-        k (int): The length of each k-mer.
-
-    Returns:
-        dict: A dictionary mapping each k-mer to its count.
-    """
-    counts = {}
-    for i in range(len(dna) - k + 1):
-        kmer = dna[k:i+k]
-        counts[kmer] = counts.get(kmer, 0) + 1
-    return counts
-
-# Example usage
-dna_sequence = "ATCGATCGAATTCG"
-kmer_length = 3
-kmer_counts = count_kmers(dna_sequence, kmer_length)
-print(kmer_counts)
