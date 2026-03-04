@@ -75,3 +75,134 @@ and you need to subtract.
 ## Bonus challenge
 
 Write an Arabic to Roman numeral converter, e.g. going the other way around.
+reversed
+
+
+
+SOLUTION script: 
+> > ## Solution
+> >
+> > ~~~python
+> > """Convert Roman numerals to their numerical value"""
+> > 
+> > import sys
+> > 
+> > NUMERAL_VALUES = {
+> >     'I': 1,
+> >     'V': 5,
+> >     'X': 10,
+> >     'L': 50,
+> >     'C': 100,
+> >     'D': 500,
+> >     'M': 1000
+> > }
+> > 
+> > def main():
+> >     if len(sys.argv) < 2:
+> >         print("Usage:", sys.argv[0], "<roman numeral>")
+> >         sys.exit(1)
+> > 
+> >     numeral = sys.argv[1]
+> >     result = convert(numeral)
+> > 
+> >     print(f"{numeral}:\t{result}")
+> > 
+> > 
+> > def convert(numeral: str) -> int:
+> >     """Convert a Roman numeral to its numerical value"""
+> >     value = 0
+> >     i = 0
+> >     for char in numeral:
+> >         current_value = NUMERAL_VALUES[char]
+> > 
+> >         if i + 1 < len(numeral):
+> >             next_value = NUMERAL_VALUES[numeral[i + 1]]
+> >             if current_value < next_value:
+> >                 value -= current_value
+> >                 i += 1
+> >                 continue
+> > 
+> >         value += current_value
+> >         i += 1
+> > 
+> >     return value
+> > 
+> > 
+> > def convert_reverse(numeral: str) -> int:
+> >     """Convert a Roman numeral to its numerical value (reverse iteration)"""
+> >     value = 0
+> >     prev_value = 0
+> > 
+> >     for char in reversed(numeral):
+> >         current_value = NUMERAL_VALUES[char]
+> > 
+> >         if current_value < prev_value:
+> >             value -= current_value
+> >         else:
+> >             value += current_value
+> > 
+> >         prev_value = current_value
+> > 
+> >     return value
+> > 
+> > 
+> > def to_roman(num: int) -> str:
+> >     """Convert a number to its Roman numeral representation"""
+> >     if num <= 0 or num >= 4000:
+> >         raise ValueError("Number must be between 1 and 3999")
+> > 
+> >     result = ""
+> >     for numeral, value in sorted(NUMERAL_VALUES.items(), key=lambda x: x[1], reverse=True):
+> >         while num >= value:
+> >             result += numeral
+> >             num -= value
+> > 
+> >         # Handle subtractive notation
+> >         if numeral == 'M' and num >= 900:
+> >             result += 'CM'
+> >             num -= 900
+> >         elif numeral == 'D' and num >= 400:
+> >             result += 'CD'
+> >             num -= 400
+> >         elif numeral == 'C' and num >= 90:
+> >             result += 'XC'
+> >             num -= 90
+> >         elif numeral == 'L' and num >= 40:
+> >             result += 'XL'
+> >             num -= 40
+> >         elif numeral == 'X' and num >= 9:
+> >             result += 'IX'
+> >             num -= 9
+> >         elif numeral == 'V' and num >= 4:
+> >             result += 'IV'
+> >             num -= 4
+> > 
+> >     return result
+> > 
+> > 
+> > def test_convert():
+> >     assert convert("III") == 3
+> >     assert convert("IV") == 4
+> >     assert convert("IX") == 9
+> >     assert convert("LVIII") == 58
+> >     assert convert("MCMXCIV") == 1994
+> > 
+> > def test_convert_reverse():
+> >     assert convert_reverse("III") == 3
+> >     assert convert_reverse("IV") == 4
+> >     assert convert_reverse("IX") == 9
+> >     assert convert_reverse("LVIII") == 58
+> >     assert convert_reverse("MCMXCIV") == 1994
+> > 
+> > def test_to_roman():
+> >     assert to_roman(3) == "III"
+> >     assert to_roman(4) == "IV"
+> >     assert to_roman(9) == "IX"
+> >     assert to_roman(58) == "LVIII"
+> >     assert to_roman(1994) == "MCMXCIV"
+> > 
+> > if __name__ == "__main__":
+> >     main()
+> > ~~~
+> > {: .language-python}
+> {: .solution}
