@@ -66,6 +66,12 @@ take. Consider efficiency, readability, and how you might handle edge cases or
 errors (such as invalid numeral sequences). This will not only help you write
 better code but also enhance your problem-solving skills.
 
+## Hint
+
+To build this, one way to read the numbers is to keep track of the current character
+you are reading, and then looking ahead to the next character to see if that's bigger
+and you need to subtract.
+
 ## Bonus challenge
 
 Write an Arabic to Roman numeral converter, e.g. going the other way around.
